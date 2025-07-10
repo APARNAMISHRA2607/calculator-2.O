@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Calculator</title>
+    <!-- Tailwind CSS CDN for utility classes and responsive design -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for a professional look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Calculator Styles -->
+    <link rel="stylesheet" href="cal.css">
+</head>
+
+<body class="font-inter bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center min-h-screen p-4">
+
+    <div style="background: #fff; padding: 2rem; border-radius: 1rem; box-shadow: 0 4px 24px rgba(0,0,0,0.12); min-width: 320px;">
+        <h2 style="text-align:center; color:#4F46E5; font-size:2rem; margin-bottom:1.5rem; font-family: 'Inter', sans-serif;">Simple Calculator</h2>
+        <input type="text" id="display" style="width:100%; font-size:2rem; text-align:right; margin-bottom:1rem; padding:0.5rem; border-radius:0.5rem; border:1px solid #ddd; background:#f3f4f6;" value="0" readonly>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem;">
+            <button onclick="clearDisplay()" style="padding:1rem; font-size:1.2rem; background:#ef4444; color:#fff; border:none; border-radius:0.5rem;">C</button>
+            <button onclick="append('/')" style="padding:1rem; font-size:1.2rem; background:#e5e7eb; color:#111; border:none; border-radius:0.5rem;">/</button>
+            <button onclick="append('')" style="padding:1rem; font-size:1.2rem; background:#e5e7eb; color:#111; border:none; border-radius:0.5rem;"></button>
+            <button onclick="delChar()" style="padding:1rem; font-size:1.2rem; background:#e5e7eb; color:#111; border:none; border-radius:0.5rem;">DEL</button>
+
+            <button onclick="append('7')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem;">7</button>
+            <button onclick="append('8')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem;">8</button>
+            <button onclick="append('9')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem;">9</button>
+            <button onclick="append('-')" style="padding:1rem; font-size:1.2rem; background:#e5e7eb; color:#111; border:none; border-radius:0.5rem;">-</button>
+
+            <button onclick="append('4')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem;">4</button>
+            <button onclick="append('5')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem;">5</button>
+            <button onclick="append('6')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem;">6</button>
+            <button onclick="append('+')" style="padding:1rem; font-size:1.2rem; background:#e5e7eb; color:#111; border:none; border-radius:0.5rem;">+</button>
+
+            <button onclick="append('1')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem;">1</button>
+            <button onclick="append('2')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem;">2</button>
+            <button onclick="append('3')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem;">3</button>
+            <button onclick="calculate()" style="padding:1rem; font-size:1.2rem; background:#4F46E5; color:#fff; border:none; border-radius:0.5rem; grid-row: span 2;">=</button>
+
+            <button onclick="append('0')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem; grid-column: span 2;">0</button>
+            <button onclick="append('.')" style="padding:1rem; font-size:1.2rem; background:#fff; color:#111; border:none; border-radius:0.5rem;">.</button>
+        </div>
+    </div>
+
+    <script>
+    let display = document.getElementById('display');
+    let current = '0';
+    function updateDisplay() {
+        display.value = current;
+    }
+    function append(val) {
+        if (current === '0' && val !== '.') current = '';
+        if (val === '.' && current.includes('.') && /[\d.]+$/.test(current) && current.match(/\d*\.(\d*)$/)) return;
+        current += val;
+        // Prevent multiple operators in a row
+        current = current.replace(/([+\-*/]){2,}/g, '$1');
+        updateDisplay();
+    }
+    function clearDisplay() {
+        current = '0';
+        updateDisplay();
+    }
+    function delChar() {
+        if (current.length > 1) {
+            current = current.slice(0, -1);
+        } else {
+            current = '0';
+        }
+        updateDisplay();
+    }
+    function calculate() {
+        try {
+            let result = eval(current.replace(/[^0-9+\-*/.]/g, ''));
+            current = result.toString();
+        } catch {
+            current = 'Error';
+        }
+        updateDisplay();
+    }
+    updateDisplay();
+    </script>
+</body>
+
+</html>

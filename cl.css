@@ -1,0 +1,203 @@
+/* Custom CSS for Professional Calculator */
+
+
+/* Import Google Font - Inter */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+body {
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    /* Prevent scroll on calculator page */
+}
+
+.calculator-wrapper {
+    max-width: 400px;
+    /* Max width for the calculator */
+    width: 100%;
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width and height */
+}
+
+.calculator-title {
+    animation: slideInDown 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.calculator-container {
+    animation: fadeInScale 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+#calculator-display {
+    animation: slideInRight 0.6s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+
+/* Button animations */
+
+.calc-btn {
+    transition: transform 0.1s ease-out, background-color 0.2s ease, box-shadow 0.2s ease;
+    animation: popIn 0.3s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.calc-btn:active {
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+/* Delay for each button to pop in sequentially */
+
+.calc-btn:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.calc-btn:nth-child(2) {
+    animation-delay: 0.55s;
+}
+
+.calc-btn:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+.calc-btn:nth-child(4) {
+    animation-delay: 0.65s;
+}
+
+.calc-btn:nth-child(5) {
+    animation-delay: 0.7s;
+}
+
+.calc-btn:nth-child(6) {
+    animation-delay: 0.75s;
+}
+
+.calc-btn:nth-child(7) {
+    animation-delay: 0.8s;
+}
+
+.calc-btn:nth-child(8) {
+    animation-delay: 0.85s;
+}
+
+.calc-btn:nth-child(9) {
+    animation-delay: 0.9s;
+}
+
+.calc-btn:nth-child(10) {
+    animation-delay: 0.95s;
+}
+
+.calc-btn:nth-child(11) {
+    animation-delay: 1.0s;
+}
+
+.calc-btn:nth-child(12) {
+    animation-delay: 1.05s;
+}
+
+.calc-btn:nth-child(13) {
+    animation-delay: 1.1s;
+}
+
+.calc-btn:nth-child(14) {
+    animation-delay: 1.15s;
+}
+
+.calc-btn:nth-child(15) {
+    animation-delay: 1.2s;
+}
+
+.calc-btn:nth-child(16) {
+    animation-delay: 1.25s;
+}
+
+.calc-btn:nth-child(17) {
+    animation-delay: 1.3s;
+}
+
+.calc-btn:nth-child(18) {
+    animation-delay: 1.35s;
+}
+
+
+/* Keyframe Animations */
+
+@keyframes animate-fade-in-scale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+/* Responsive adjustments */
+
+@media (max-width: 640px) {
+    .calculator-wrapper {
+        padding: 1rem;
+    }
+    .calculator-container {
+        padding: 1rem;
+    }
+    #calculator-display {
+        font-size: 2.5rem;
+        padding: 0.75rem;
+    }
+    .calc-btn {
+        font-size: 1.5rem;
+        padding: 0.75rem;
+    }
+}
